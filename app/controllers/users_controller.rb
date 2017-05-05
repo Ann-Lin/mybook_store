@@ -1,26 +1,26 @@
 class UsersController < ApplicationController
-  befor action :set_user, only:[:show, :edit, :update, :destory]
+  befor action :set_bookname, only:[:show, :edit, :update, :destory]
   
   def index
-    @user=User.all
+    @bookname=Bookname.all
   end
   
   def show
   end
   
   def new 
-    @user=User.new
+    @bookname=Bookname.new
   end
   
   def edit
   end
   
   def create
-    @user =User.new(user_params)
+    @bookname =Bookname.new(book_params)
     
     respond_to do |format|
-      if @user.save
-        format.html{redirect_to @user, notice:'success create'}
+      if  @bookname.save
+        format.html{redirect_to  @bookname, notice:'success create'}
       else
      format.html{render new}
       end
@@ -29,8 +29,8 @@ class UsersController < ApplicationController
   
  def update
     respond_to do |format|
-      if @user.update(user_params)
-        format.html{redirect_to @user, notice:'success update'}
+      if  @bookname.update(book_params)
+        format.html{redirect_to  @bookname, notice:'success update'}
       else
       format.html{render :edit}
       end
@@ -46,10 +46,10 @@ class UsersController < ApplicationController
 
  private
 
-    def set_user
-      @user = User.find(params[:id])
+    def set_bookname
+       @bookname = Bookname.find(params[:id])
     end
-  def user_params
+  def book_params
     params.require(:user).permit(:name, :email, :password)
    end
 end
